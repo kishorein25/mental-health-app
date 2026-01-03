@@ -1,13 +1,16 @@
 {
-  "name": "mental-health-app",
+  "name": "mindbloom",
   "version": "1.0.0",
-  "description": "Mental Wellness Hub - Chatbot, Binaural Beats, and Mind Games",
+  "description": "MindBloom - Mental Wellness Hub with Chatbot, Binaural Beats, and Mind Games",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js"
   },
-  "keywords": ["mental-health", "wellness", "chatbot", "binaural-beats"],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["mental-health", "wellness", "chatbot", "binaural-beats", "mindbloom"],
   "author": "kishorein25",
   "license": "MIT"
 }
