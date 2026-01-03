@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance & Movement - Mental Wellness Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .dance-container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .category-tabs {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .category-tab {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .category-tab.active {
+            background: #667eea;
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+        
+        .category-tab:hover {
+            background: rgba(102, 126, 234, 0.8);
+        }
+        
+        .category-content {
+            display: none;
+        }
+        
+        .category-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .exercise-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #667eea;
+            transition: 0.3s;
+        }
+        
+        .exercise-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(10px);
+        }
+        
+        .exercise-card h3 {
+            margin: 0 0 0.5rem 0;
+            color: #fff;
+            font-size: 1.3rem;
+        }
+        
+        .duration {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.3);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.8rem;
+        }
+        
+        .exercise-description {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            margin: 0.8rem 0;
+        }
+        
+        .exercise-steps {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .exercise-steps ol {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .exercise-steps li {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+        
+        .benefits {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
+        
+        .benefits strong {
+            color: #fff;
+        }
+        
+        .category-description {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 2rem 0;
+            font-size: 1.05rem;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💃 Dance & Movement Therapy</h1>
+        <p>Move your body, free your mind, heal your soul - suitable for all ages and fitness levels</p>
+        <a href="../index.html" style="color: white; text-decoration: none; opacity: 0.9; font-size: 1.1rem;">← Back to Home</a>
+    </header>
+    
+    <div class="dance-container">
+        <div class="category-tabs">
+            <button class="category-tab active" onclick="switchCategory('quick')">⚡ Quick Relief (5-10 min)</button>
+            <button class="category-tab" onclick="switchCategory('stress')">😰 Stress Release</button>
+            <button class="category-tab" onclick="switchCategory('joy')">🎉 Joy & Energy</button>
+            <button class="category-tab" onclick="switchCategory('professional')">💼 Office & Professional</button>
+            <button class="category-tab" onclick="switchCategory('sleep')">😴 Relaxing Movement</button>
+        </div>
+        
+        <!-- Quick Relief -->
+        <div id="quick" class="category-content active">
+            <div class="category-description">
+                ⚡ Short exercises you can do right now - at your desk, in your room, anywhere. No special equipment needed!
+            </div>
+            
+            <div class="exercise-card">
+                <h3>🕺 30-Second Dance Break</h3>
+                <span class="duration">⏱️ 30 seconds</span>
+                <p class="exercise-description">
+                    Stand up and move to your favorite song! Jump, sway, spin - let your body express what your heart feels.
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Play your favorite uplifting song</li>
+                        <li>Stand in a clear space</li>
+                        <li>Move freely - dance however feels good to YOU</li>
+                        <li>Feel the music in every part of your body</li>
+                        <li>Let joy flow through your movements</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Instant mood boost, releases endorphins, breaks anxiety cycles, pure joy!
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <h3>🤸 Shake It Out - Stress Release</h3>
+                <span class="duration">⏱️ 2-3 minutes</span>
+                <p class="exercise-description">
+                    Literally shake your whole body to release tension and stress. This works! 💪
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Stand with feet shoulder-width apart</li>
+                        <li>Shake your arms vigorously (like you're wet)</li>
+                        <li>Shake your legs and whole body</li>
+                        <li>Add a shake of your head (neck is good for tension)</li>
+                        <li>Shake as if releasing all stress from your body</li>
+                        <li>End with deep breaths and stillness</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Releases held tension, reduces cortisol (stress hormone), feels energizing, therapeutic!
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <h3>🌞 Sunrise Stretch & Sway</h3>
+                <span class="duration">⏱️ 3-4 minutes</span>
+                <p class="exercise-description">
+                    Gentle movements paired with stretching. Awakens your body and calms your mind simultaneously.
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Stand tall with feet together</li>
+                        <li>Sway side to side slowly and gently</li>
+                        <li>Raise arms above head - feel yourself growing</li>
+                        <li>Fold forward gently - let tension release</li>
+                        <li>Roll shoulders slowly backward</li>
+                        <li>End with standing tall and 5 deep breaths</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Improves circulation, reduces muscle tension, calming, energizing, peaceful!
+                </div>
+            </div>
+        </div>
+        
+        <!-- Stress Release -->
+        <div id="stress" class="category-content">
+            <div class="category-description">
+                😰 When stress is overwhelming, these movements help discharge that trapped energy and calm your nervous system.
+            </div>
+            
+            <div class="exercise-card">
+                <h3>🔥 Power Punch Release</h3>
+                <span class="duration">⏱️ 5-8 minutes</span>
+                <p class="exercise-description">
+                    Channel your stress into powerful, controlled movements. This is therapeutic boxing without the heavy work.
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Stand in boxer stance (one foot forward)</li>
+                        <li>Punch the air with controlled force</li>
+                        <li>Alternate arms - left punch, right punch</li>
+                        <li>Add body rotation for more power</li>
+                        <li>Move around the space - duck and weave</li>
+                        <li>Imagine releasing all tension with each punch</li>
+                        <li>End gently - slow breaths</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Releases pent-up anger/frustration, physical outlet for stress, empowering, energizing!
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <h3>🌊 Tension Wave Release</h3>
+                <span class="duration">⏱️ 4-6 minutes</span>
+                <p class="exercise-description">
+                    Roll and move tension out of your body like waves washing away stress.
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Stand with feet apart, knees soft</li>
+                        <li>Roll your head in circles slowly</li>
+                        <li>Roll shoulders backward, then forward</li>
+                        <li>Sway hips - let them move freely</li>
+                        <li>Roll your spine gently forward and back</li>
+                        <li>Do full body waves - like ripples moving through you</li>
+                        <li>Finish with stillness - feel the calm</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Releases spinal tension, improves flexibility, calming, meditative, deeply relaxing!
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <h3>💨 Breathwork Dance Combo</h3>
+                <span class="duration">⏱️ 5-7 minutes</span>
+                <p class="exercise-description">
+                    Combine breath with movement. The breath anchors you while movement releases stress.
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Breathe in for 4 counts - reach arms up</li>
+                        <li>Breathe out for 4 counts - bend forward</li>
+                        <li>Repeat 5 times slowly</li>
+                        <li>Then add gentle swaying to the rhythm</li>
+                        <li>Feel the connection between breath and body</li>
+                        <li>Slowly increase pace if you wish</li>
+                        <li>End with stillness - just breathing</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Calms nervous system, synchronizes body and mind, deeply grounding, peaceful!
+                </div>
+            </div>
+        </div>
+        
+        <!-- Joy & Energy -->
+        <div id="joy" class="category-content">
+            <div class="category-description">
+                🎉 Feel alive! These are fun, energizing movements that boost your mood and remind you to celebrate yourself!
+            </div>
+            
+            <div class="exercise-card">
+                <h3>🕺 Freestyle Dance Party</h3>
+                <span class="duration">⏱️ 10-15 minutes</span>
+                <p class="exercise-description">
+                    Put on your favorite upbeat songs and DANCE! No rules, no judgment - just pure joy.
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Create a playlist of 3-5 upbeat songs you LOVE</li>
+                        <li>Clear your space</li>
+                        <li>Press play and LET GO</li>
+                        <li>Dance like nobody's watching</li>
+                        <li>Jump, spin, move however you want</li>
+                        <li>Smile - you deserve this joy!</li>
+                        <li>End with a few slow songs to come down</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Massive endorphin release, pure happiness, cardio workout, celebrates YOUR body!
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <h3>✨ Confidence Power Moves</h3>
+                <span class="duration">⏱️ 5 minutes</span>
+                <p class="exercise-description">
+                    Feel like a superhero! These power poses and moves boost confidence and courage.
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Stand tall with feet wide apart</li>
+                        <li>Hands on hips or arms raised - POWER POSE</li>
+                        <li>Feel the confidence in your posture</li>
+                        <li>Walk tall around your space</li>
+                        <li>Lift your head - you are WORTHY</li>
+                        <li>Add arm movements - reaching, stretching</li>
+                        <li>Celebrate yourself with joy!</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Boosts confidence, increases testosterone (in anyone!), empowering, mood-lifting!
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <h3>🎵 Victory Celebration Dance</h3>
+                <span class="duration">⏱️ 3-5 minutes</span>
+                <p class="exercise-description">
+                    Celebrate YOURSELF! You survived today. You're doing your best. You DESERVE a celebration!
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Think of something you accomplished today (even small wins!)</li>
+                        <li>Play a celebratory song</li>
+                        <li>Dance like you just won something BIG (because you did!)</li>
+                        <li>Raise your arms in victory</li>
+                        <li>Spin around in happiness</li>
+                        <li>Smile ear to ear</li>
+                        <li>CELEBRATE YOU!</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Self-appreciation, mood boost, celebrates progress, reminds you of your worth!
+                </div>
+            </div>
+        </div>
+        
+        <!-- Professional Office -->
+        <div id="professional" class="category-content">
+            <div class="category-description">
+                💼 Discrete movements you can do at your desk or in the office. Release stress without looking "weird" to colleagues!
+            </div>
+            
+            <div class="exercise-card">
+                <h3>🪑 Seated Stress Release</h3>
+                <span class="duration">⏱️ 3-4 minutes</span>
+                <p class="exercise-description">
+                    Perfect for work breaks - stay in your chair but release tension. Do this between meetings!
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Sit in your office chair</li>
+                        <li>Slow shoulder rolls - 5 backward, 5 forward</li>
+                        <li>Neck stretches - turn head side to side</li>
+                        <li>Seated twist - hold the back of your chair, twist your torso</li>
+                        <li>Wrist and hand circles</li>
+                        <li>Seated forward fold - let your head hang</li>
+                        <li>5 deep breaths - feel the calm</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Reduces desk tension, discreet, improves focus, nobody needs to know!
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <h3>🚶 Power Walk Break</h3>
+                <span class="duration">⏱️ 5-10 minutes</span>
+                <p class="exercise-description">
+                    Walk like you have somewhere important to be - because you do! You're taking care of yourself.
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Stand up and step away from your desk</li>
+                        <li>Walk with shoulders back and head high</li>
+                        <li>Let your arms swing naturally</li>
+                        <li>Take the stairs if possible</li>
+                        <li>Walk outside if you can - fresh air helps</li>
+                        <li>Walk with purpose and confidence</li>
+                        <li>Return to work feeling refreshed</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Clears mental fog, improves productivity, discreet stress relief, energizing!
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <h3>👁️ Eye & Face Release</h3>
+                <span class="duration">⏱️ 2-3 minutes</span>
+                <p class="exercise-description">
+                    Work causes face and eye tension. Release it right at your desk!
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Close your eyes for 10 seconds</li>
+                        <li>Gently massage your temples</li>
+                        <li>Rub your face gently - awaken it</li>
+                        <li>Raise eyebrows and release (repeat 5x)</li>
+                        <li>Look away from screen - focus on something distant</li>
+                        <li>Gentle neck stretches</li>
+                        <li>Return to work feeling lighter</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Reduces eye strain, facial tension relief, nobody notices, feels amazing!
+                </div>
+            </div>
+        </div>
+        
+        <!-- Relaxing Movement -->
+        <div id="sleep" class="category-content">
+            <div class="category-description">
+                😴 Gentle, flowing movements for evening relaxation and preparing your body and mind for restorative sleep.
+            </div>
+            
+            <div class="exercise-card">
+                <h3>🌙 Gentle Flowing Yoga-Inspired Movement</h3>
+                <span class="duration">⏱️ 10-15 minutes</span>
+                <p class="exercise-description">
+                    Slow, intentional movements that calm your entire nervous system. Perfect before bed.
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Wear comfortable clothes</li>
+                        <li>Play soft, calming music</li>
+                        <li>Start standing - take 5 deep breaths</li>
+                        <li>Slow shoulder rolls - feel tension leaving</li>
+                        <li>Gentle forward fold - hang there, breathe</li>
+                        <li>Standing side stretches - reach toward the sky</li>
+                        <li>Seated positions - spine twist, forward fold</li>
+                        <li>Lay down - body scan relaxation</li>
+                        <li>Rest in stillness for 5 minutes</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Deep relaxation, prepares body for sleep, lowers cortisol, profoundly peaceful!
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <h3>💤 Progressive Relaxation with Movement</h3>
+                <span class="duration">⏱️ 8-10 minutes</span>
+                <p class="exercise-description">
+                    Tense and release each muscle group while moving gently. Ultimate relaxation.
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Lie down on back or carpet</li>
+                        <li>Tense arms - squeeze for 3 seconds, release</li>
+                        <li>Tense legs - squeeze for 3 seconds, release</li>
+                        <li>Tense face - screw it up, release</li>
+                        <li>Do slow, gentle roll-overs (like rolling in bed)</li>
+                        <li>Feel tension melting away</li>
+                        <li>Stay still in deep relaxation</li>
+                        <li>Breathe slowly and naturally</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Releases all muscle tension, prepares sleep, deeply calming, meditative!
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <h3>🌊 Rocking Meditation Movement</h3>
+                <span class="duration">⏱️ 5-8 minutes</span>
+                <p class="exercise-description">
+                    Sitting or lying down, gentle rocking motions that soothe like being held by the universe.
+                </p>
+                <div class="exercise-steps">
+                    <strong>How to:</strong>
+                    <ol>
+                        <li>Sit cross-legged or lie on back</li>
+                        <li>Rock side to side slowly - like waves</li>
+                        <li>Rock front to back gently</li>
+                        <li>Feel held and supported</li>
+                        <li>Synchronize with deep, slow breathing</li>
+                        <li>Let your body guide the pace</li>
+                        <li>Gradually slow to stillness</li>
+                        <li>Rest in peaceful quietness</li>
+                    </ol>
+                </div>
+                <div class="benefits">
+                    <strong>💡 Benefits:</strong> Soothes nervous system, deeply comforting, prepares sleep, absolutely healing!
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function switchCategory(category) {
+            // Hide all content
+            document.querySelectorAll('.category-content').forEach(c => c.classList.remove('active'));
+            
+            // Show selected content
+            document.getElementById(category).classList.add('active');
+            
+            // Update tabs
+            document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

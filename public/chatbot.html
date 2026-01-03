@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Chatbot - Your Mental Health Companion</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .chat-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .mode-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 1rem;
+            justify-content: center;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .mode-content {
+            display: none;
+            flex: 1;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .mode-content.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+        
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        
+        .message {
+            margin: 1.2rem 0;
+            padding: 1.2rem 1.5rem;
+            border-radius: 20px;
+            max-width: 85%;
+            animation: messageSlide 0.3s ease-out;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+        
+        @keyframes messageSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .user-message {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin-left: auto;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            border-bottom-right-radius: 5px;
+        }
+        
+        .bot-message {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 5px;
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* JOKES & GK STYLES */
+        .content-display {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        #joke-display, #gk-display {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .action-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* QUIZ STYLES */
+        .quiz-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        #category-select {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .category-btn {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .category-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        #question-display {
+            display: none;
+        }
+        
+        #question-display.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+        
+        .quiz-stat {
+            text-align: center;
+        }
+        
+        .quiz-stat label {
+            display: block;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quiz-stat span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #10b981;
+        }
+        
+        #question-text {
+            font-size: 1.3rem;
+            margin: 2rem 0;
+            font-weight: 600;
+        }
+        
+        #options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex: 1;
+        }
+        
+        .option {
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        
+        .option:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(5px);
+        }
+        
+        .option.correct {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+        
+        .option.incorrect {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+        }
+        
+        #feedback-message {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .feedback {
+            padding: 1rem;
+            border-radius: 10px;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .feedback.correct {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+        
+        .feedback.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        #next-btn, #restart-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        #next-btn:hover, #restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🤖 ChatGPT-Like AI Companion</h1>
+        <p>Chat • Jokes • General Knowledge • Quizzes • Mind Relaxation</p>
+        <a href="../index.html" style="color: white; text-decoration: none; opacity: 0.9; font-size: 1.1rem;">← Back to Home</a>
+    </header>
+    
+    <div class="chat-container">
+        <!-- MODE TABS -->
+        <div class="mode-tabs">
+            <button class="tab-btn active" onclick="switchMode('chat')">💬 Chat</button>
+            <button class="tab-btn" onclick="switchMode('jokes')">😂 Jokes</button>
+            <button class="tab-btn" onclick="switchMode('gk')">🧠 GK Facts</button>
+            <button class="tab-btn" onclick="switchMode('quiz')">📚 Quiz</button>
+        </div>
+
+        <!-- CHAT MODE -->
+        <div id="chat" class="mode-content active">
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Share what's on your mind... I'm listening 💭">
+                <button onclick="sendMessage()">Send 💌</button>
+            </div>
+        </div>
+
+        <!-- JOKES MODE -->
+        <div id="jokes" class="mode-content">
+            <div class="content-display">
+                <h2>😂 Laugh & Relax</h2>
+                <div id="joke-display">Tell me a joke!</div>
+                <button class="action-btn" onclick="getJoke()">Get Another Joke 😄</button>
+            </div>
+        </div>
+
+        <!-- GENERAL KNOWLEDGE MODE -->
+        <div id="gk" class="mode-content">
+            <div class="content-display">
+                <h2>🧠 Did You Know?</h2>
+                <div id="gk-display">Interesting fact coming up...</div>
+                <button class="action-btn" onclick="getGK()">Get Another Fact ✨</button>
+            </div>
+        </div>
+
+        <!-- QUIZ MODE -->
+        <div id="quiz" class="mode-content">
+            <div class="quiz-container">
+                <!-- Category Selection -->
+                <div id="category-select">
+                    <button class="category-btn" onclick="startQuiz('cricket')">🏏 Cricket Quiz</button>
+                    <button class="category-btn" onclick="startQuiz('movies')">🎬 Movies Quiz</button>
+                    <button class="category-btn" onclick="startQuiz('sports')">⚽ Sports Quiz</button>
+                    <button class="category-btn" onclick="startQuiz('science')">🔬 Science Quiz</button>
+                    <button class="category-btn" onclick="startQuiz('history')">📜 History Quiz</button>
+                    <button class="category-btn" onclick="startQuiz('geography')">🌍 Geography Quiz</button>
+                </div>
+
+                <!-- Question Display -->
+                <div id="question-display">
+                    <div class="quiz-header">
+                        <div class="quiz-stat">
+                            <label>Question</label>
+                            <span id="current-q">1/10</span>
+                        </div>
+                        <div class="quiz-stat">
+                            <label>Correct</label>
+                            <span id="correct-count">0</span>
+                        </div>
+                        <div class="quiz-stat">
+                            <label>Score</label>
+                            <span id="quiz-score">0%</span>
+                        </div>
+                    </div>
+                    
+                    <div id="question-text"></div>
+                    <div id="options-container"></div>
+                    <div id="feedback-message"></div>
+                    
+                    <button id="next-btn" class="action-btn" onclick="nextQuestion()">Next Question →</button>
+                    <button id="restart-btn" class="action-btn" onclick="restartQuiz()">Try Another Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/chatbot-enhanced.js"></script>
+</body>
+</html>

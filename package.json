@@ -1,0 +1,13 @@
+{
+  "name": "mental-health-app",
+  "version": "1.0.0",
+  "description": "Mental Wellness Hub - Chatbot, Binaural Beats, and Mind Games",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["mental-health", "wellness", "chatbot", "binaural-beats"],
+  "author": "kishorein25",
+  "license": "MIT"
+}

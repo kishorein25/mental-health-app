@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindfulness & Relaxation Games - Mental Wellness Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .games-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .game-tabs {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .game-tab {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+
+        .game-tab:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .game-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 0.6s ease-out;
+            display: none;
+        }
+
+        .game-container.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .memory-card:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .memory-card.flipped {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .breathing-circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            margin: 2rem auto;
+            animation: breathe 8s infinite;
+            box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .quiz-option {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(10px);
+        }
+
+        .quiz-option.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: rgba(76, 175, 80, 0.6);
+        }
+
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .puzzle-piece {
+            aspect-ratio: 1;
+            background: rgba(102, 126, 234, 0.4);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .puzzle-piece:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .puzzle-piece.solved {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: rgba(76, 175, 80, 0.6);
+        }
+
+        .stress-relief-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stress-relief-bubble {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stress-relief-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .stress-relief-bubble:active {
+            animation: pop 0.6s ease-out;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1.1); }
+            50% { opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        .status-message {
+            font-size: 1.3rem;
+            margin: 1.5rem 0;
+            font-weight: 500;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        button {
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🧘‍♀️ Mindfulness & Relaxation Journey</h1>
+        <p>Different exercises for different moments - find what soothes your soul</p>
+        <a href="../index.html" style="color: white; text-decoration: none; opacity: 0.9; font-size: 1.1rem;">← Back to Home</a>
+    </header>
+    
+    <div class="games-container">
+        <div class="game-tabs">
+            <button class="game-tab active" onclick="switchGame('breathing')">🌬️ Breathing</button>
+            <button class="game-tab" onclick="switchGame('memory')">🎯 Memory Match</button>
+            <button class="game-tab" onclick="switchGame('puzzle')">🧩 Puzzle</button>
+            <button class="game-tab" onclick="switchGame('quiz')">💭 Wellness Quiz</button>
+            <button class="game-tab" onclick="switchGame('stress')">🎈 Stress Relief</button>
+        </div>
+
+        <!-- Breathing Exercise -->
+        <div id="breathing" class="game-container active">
+            <h2>✨ Guided Breathing Exercise</h2>
+            <p style="font-size: 1.15rem; line-height: 1.8;">Let the gentle rhythm guide you into a state of calm. Watch the circle breathe with you. This is YOUR time. Be kind to yourself. 🌸</p>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin: 1rem 0;">Breathe in slowly as the circle expands... Hold... Then breathe out as it shrinks...</p>
+            <div class="breathing-circle"></div>
+            <div class="status-message">You're doing beautifully 💚</div>
+        </div>
+
+        <!-- Memory Match Game -->
+        <div id="memory" class="game-container">
+            <h2>🎯 Memory Wellness Game</h2>
+            <p style="font-size: 1.15rem; line-height: 1.8;">A gentle exercise for your mind. Take your time, there's no rush. Each match you find is a small victory! This is about presence, not perfection. 💜</p>
+            <button onclick="startMemoryGame()" style="margin: 1.5rem 0;">Begin Your Practice 🌺</button>
+            <div class="status-message" id="memory-score">Ready when you are 🌟</div>
+            <div class="memory-grid" id="memory-game"></div>
+        </div>
+
+        <!-- Puzzle Game -->
+        <div id="puzzle" class="game-container">
+            <h2>🧩 Peace Puzzle</h2>
+            <p style="font-size: 1.15rem; line-height: 1.8;">Click the matching pairs to complete the peace puzzle. Find harmony in each match! Take your time and celebrate every success. 💙</p>
+            <button onclick="startPuzzleGame()" style="margin: 1.5rem 0;">Start the Puzzle ✨</button>
+            <div class="status-message" id="puzzle-score">Ready to create harmony 🌈</div>
+            <div class="puzzle-grid" id="puzzle-game"></div>
+        </div>
+
+        <!-- Wellness Quiz -->
+        <div id="quiz" class="game-container">
+            <h2>💭 Wellness Wisdom Quiz</h2>
+            <p style="font-size: 1.15rem; line-height: 1.8;">Test your wellness knowledge! Learn something new about mental health and self-care. There's no pressure - just growth. 🌟</p>
+            <button onclick="startQuiz()" style="margin: 1.5rem 0;">Start the Quiz 📚</button>
+            <div id="quiz-content"></div>
+        </div>
+
+        <!-- Stress Relief Popper -->
+        <div id="stress" class="game-container">
+            <h2>🎈 Mindful Bubble Popper</h2>
+            <p style="font-size: 1.15rem; line-height: 1.8;">Sometimes we just need to let it out! Pop these bubbles and release your stress. Each pop is therapeutic. You're in control. 💨</p>
+            <button onclick="startStressRelief()" style="margin: 1.5rem 0;">Create Bubbles to Pop 🎈</button>
+            <div class="status-message" id="stress-score">Pop as many as you want! 😄</div>
+            <div class="stress-relief-grid" id="stress-game"></div>
+        </div>
+    </div>
+    
+    <script src="js/games.js"></script>
+</body>
+</html>
