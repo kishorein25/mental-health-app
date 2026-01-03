@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Support</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌟 Mental Health Support</h1>
+            <p class="subtitle">Track your mood, journal, and practice mindfulness</p>
+        </header>
+
+        <main>
+            <!-- Mood Tracker -->
+            <section class="card">
+                <h2>How are you feeling?</h2>
+                <div class="mood-buttons">
+                    <button class="mood-btn" data-mood="great" onclick="trackMood('great', '😊')">😊 Great</button>
+                    <button class="mood-btn" data-mood="good" onclick="trackMood('good', '🙂')">🙂 Good</button>
+                    <button class="mood-btn" data-mood="okay" onclick="trackMood('okay', '😐')">😐 Okay</button>
+                    <button class="mood-btn" data-mood="bad" onclick="trackMood('bad', '😔')">😔 Bad</button>
+                    <button class="mood-btn" data-mood="terrible" onclick="trackMood('terrible', '😢')">😢 Terrible</button>
+                </div>
+                <div id="mood-feedback" class="feedback"></div>
+                <div id="mood-history" class="history"></div>
+            </section>
+
+            <!-- Quick Journal -->
+            <section class="card">
+                <h2>Quick Journal</h2>
+                <textarea id="journal-input" placeholder="What's on your mind? Writing can help process your thoughts..." rows="4"></textarea>
+                <button onclick="saveJournal()" class="btn-primary">Save Entry</button>
+                <div id="journal-feedback" class="feedback"></div>
+            </section>
+
+            <!-- Breathing Exercise -->
+            <section class="card">
+                <h2>Breathing Exercise</h2>
+                <p>Follow the circle to calm your mind</p>
+                <div class="breathing-container">
+                    <div id="breathing-circle" class="breathing-circle"></div>
+                    <div id="breathing-text" class="breathing-text">Click Start</div>
+                </div>
+                <button id="breathing-btn" onclick="toggleBreathing()" class="btn-primary">Start</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>Remember: It's okay to not be okay. Reach out to a professional if you need support.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
