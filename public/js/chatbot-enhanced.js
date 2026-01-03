@@ -382,7 +382,7 @@ let answered = false;
 function switchMode(mode) {
     document.querySelectorAll('.mode-content').forEach(el => el.classList.remove('active'));
     document.getElementById(mode).classList.add('active');
-    
+
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
 
@@ -391,57 +391,71 @@ function switchMode(mode) {
 }
 
 // CHAT MODE
-function sendMessage() {
+async function sendMessage() {
     const input = document.getElementById('user-input');
     const message = input.value.trim();
-    
+
     if (!message) return;
-    
+
+    // Add User Message
     addChatMessage(message, 'user');
     input.value = '';
-    
-    // Check for special commands
+
+    // Check for special commands client-side first
     const lower = message.toLowerCase();
-    let response;
 
     if (lower.includes('joke')) {
         switchMode('jokes');
+        // Optional: Still send to AI for a funny comment? No, keep it simple.
+        addChatMessage("I've switched to Jokes mode for you! 😂", 'bot');
         return;
     } else if (lower.includes('quiz')) {
         switchMode('quiz');
+        addChatMessage("Time for a brain workout! 🧠 Let's start a quiz.", 'bot');
         return;
     } else if (lower.includes('gk') || lower.includes('knowledge')) {
         switchMode('gk');
+        addChatMessage("Did you know? Let's explore some facts! ✨", 'bot');
         return;
     }
-    
-    // Generate emotional response
-    response = generateEmotionalResponse(message);
-    
-    setTimeout(() => {
-        addChatMessage(response, 'bot');
-    }, 1000);
-}
 
-function generateEmotionalResponse(message) {
-    const lower = message.toLowerCase();
-    const keywords = {
-        stress: ['stress', 'pressure', 'deadline', 'busy', 'overwhelm', 'load'],
-        happy: ['happy', 'joy', 'great', 'wonderful', 'amazing', 'love it', 'awesome'],
-        sad: ['sad', 'down', 'depressed', 'hurt', 'cry', 'tears', 'miserable', 'unhappy'],
-        anxious: ['anxious', 'nervous', 'worried', 'panic', 'fear', 'scared', 'anxiety']
-    };
+    // Show typing indicator (Optional UI enhancement)
+    const loadingId = 'loading-' + Date.now();
+    const container = document.getElementById('chat-messages');
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'message bot-message';
+    loadingDiv.id = loadingId;
+    loadingDiv.textContent = "Thinking... 💭";
+    container.appendChild(loadingDiv);
+    container.scrollTop = container.scrollHeight;
 
-    for (let emotion in keywords) {
-        for (let keyword of keywords[emotion]) {
-            if (lower.includes(keyword)) {
-                return emotionalResponses[emotion][Math.floor(Math.random() * emotionalResponses[emotion].length)];
-            }
-        }
+    try {
+        // Call the Backend API
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message: message })
+        });
+
+        const data = await response.json();
+
+        // Remove loading message
+        const loadingElement = document.getElementById(loadingId);
+        if (loadingElement) loadingElement.remove();
+
+        // Add Bot Response
+        addChatMessage(data.reply, 'bot');
+
+    } catch (error) {
+        console.error("Chat Error:", error);
+        const loadingElement = document.getElementById(loadingId);
+        if (loadingElement) loadingElement.remove();
+
+        // Fallback offline response
+        addChatMessage("I'm having trouble connecting to the cloud right now. ☁️ But I'm here! Tell me more?", 'bot');
     }
-
-    // Default response
-    return "That sounds important! Tell me more. I'm listening with my full heart. 💙";
 }
 
 function addChatMessage(text, sender) {
@@ -474,17 +488,17 @@ function startQuiz(category) {
 
     document.getElementById('category-select').style.display = 'none';
     document.getElementById('question-display').classList.add('active');
-    
+
     showQuestion();
 }
 
 function showQuestion() {
     const q = currentQuiz[currentQuestion];
     document.getElementById('question-text').textContent = `${currentQuestion + 1}. ${q.q}`;
-    
+
     const optionsContainer = document.getElementById('options-container');
     optionsContainer.innerHTML = '';
-    
+
     q.opts.forEach((opt, index) => {
         const optDiv = document.createElement('div');
         optDiv.className = 'option';
@@ -504,7 +518,7 @@ function selectOption(index) {
 
     const q = currentQuiz[currentQuestion];
     const options = document.querySelectorAll('.option');
-    
+
     if (index === q.ans) {
         options[index].classList.add('correct');
         document.getElementById('feedback-message').innerHTML = '<div class="feedback correct">✅ Correct! Well done! 🎉</div>';
@@ -528,7 +542,7 @@ function updateStats() {
 
 function nextQuestion() {
     currentQuestion++;
-    
+
     if (currentQuestion < currentQuiz.length) {
         showQuestion();
     } else {
@@ -544,9 +558,9 @@ function showFinalScore() {
             <p style="font-size: 1.3rem; margin: 1rem 0;">Your Score: <strong>${correctAnswers}/10</strong></p>
             <p style="font-size: 1.1rem; color: #10b981;">${percentage}% Correct!</p>
             <p style="margin-top: 1rem; color: rgba(255,255,255,0.8);">
-                ${percentage >= 80 ? '🌟 Outstanding! You\'re a genius!' : 
-                  percentage >= 60 ? '👍 Great job! Keep learning!' : 
-                  '💪 Good effort! Practice makes perfect!'}
+                ${percentage >= 80 ? '🌟 Outstanding! You\'re a genius!' :
+            percentage >= 60 ? '👍 Great job! Keep learning!' :
+                '💪 Good effort! Practice makes perfect!'}
             </p>
         </div>
     `;

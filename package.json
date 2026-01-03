@@ -10,7 +10,19 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": ["mental-health", "wellness", "chatbot", "binaural-beats", "mindbloom"],
+  "keywords": [
+    "mental-health",
+    "wellness",
+    "chatbot",
+    "binaural-beats",
+    "mindbloom"
+  ],
   "author": "kishorein25",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.1.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  }
 }
