@@ -1,4 +1,6 @@
-// Minimal, optimized JavaScript for fast page load
+// Optimized JavaScript for fast page load
+const BREATHING_CYCLE_DURATION = 8000; // 8 seconds per cycle
+
 let breathingInterval = null;
 let isBreathing = false;
 
@@ -93,7 +95,7 @@ function toggleBreathing() {
         isBreathing = true;
         btn.textContent = 'Stop';
         breathe();
-        breathingInterval = setInterval(breathe, 8000);
+        breathingInterval = setInterval(breathe, BREATHING_CYCLE_DURATION);
     }
 }
 

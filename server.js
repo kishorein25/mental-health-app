@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const crypto = require('crypto');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +13,9 @@ app.use(express.static('public'));
 let moodEntries = [];
 let journalEntries = [];
 
+// Allowed mood values
+const VALID_MOODS = ['great', 'good', 'okay', 'bad', 'terrible'];
+
 // API Routes
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', uptime: process.uptime() });
@@ -19,10 +23,16 @@ app.get('/api/health', (req, res) => {
 
 app.post('/api/mood', (req, res) => {
   const { mood, note } = req.body;
+  
+  // Validate mood
+  if (!mood || !VALID_MOODS.includes(mood)) {
+    return res.status(400).json({ error: 'Invalid mood value' });
+  }
+  
   const entry = {
-    id: Date.now(),
+    id: crypto.randomUUID(),
     mood,
-    note,
+    note: note ? String(note).slice(0, 100) : '',
     timestamp: new Date().toISOString()
   };
   moodEntries.push(entry);
@@ -35,9 +45,19 @@ app.get('/api/mood', (req, res) => {
 
 app.post('/api/journal', (req, res) => {
   const { content } = req.body;
+  
+  // Validate content
+  if (!content || typeof content !== 'string' || content.trim().length === 0) {
+    return res.status(400).json({ error: 'Content is required' });
+  }
+  
+  if (content.length > 10000) {
+    return res.status(400).json({ error: 'Content too long (max 10000 characters)' });
+  }
+  
   const entry = {
-    id: Date.now(),
-    content,
+    id: crypto.randomUUID(),
+    content: content.slice(0, 10000),
     timestamp: new Date().toISOString()
   };
   journalEntries.push(entry);
