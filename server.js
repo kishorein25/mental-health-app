@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+// const { GoogleGenerativeAI } = require('@google/generative-ai'); // Use Axios instead for stability
+const axios = require('axios');
 require('dotenv').config();
 
 const app = express();
@@ -10,13 +11,12 @@ const PORT = process.env.PORT || 8000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.json());
 // Serve "public" folder at the "/public" route so links like "public/css/style.css" work
 app.use('/public', express.static('public'));
 
 // Initialize Gemini AI
-// NOTE: You must get an API KEY from https://aistudio.google.com/ and put it in a .env file
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "YOUR_API_KEY_HERE");
+console.log("Current working directory:", process.cwd());
+console.log("API Key found in env:", !!process.env.GEMINI_API_KEY ? "YES" : "NO");
 
 // System Instruction for the Mental Health Bot
 const SYSTEM_PROMPT = `
@@ -34,45 +34,54 @@ CRITICAL RULES:
 5. LENGTH: Keep responses concise (2-3 sentences max) unless aksed for more.
 `;
 
+const localResponses = {
+    greetings: ["Hello there! 💙 I'm here for you.", "Hi! I'm MindBloom. How are you feeling today? 🌿", "Greetings! I'm ready to listen. ✨"],
+    sad: ["I'm so sorry you're feeling this way. 💙 It's okay not to be okay.", "Sending you a virtual hug. 🫂 calm ocean waves sometimes have storms too.", "I hear you. detailed sadness is heavy, but you don't have to carry it alone."],
+    stress: ["Take a deep breath with me... In... Out... 🍃", "Stress is just energy. Let's try to channel it. Have you tried our Mind Games?", "You are doing your best, and that is enough. 💙"],
+    anxious: ["I know anxiety is scary. But you are safe right now. 🛡️", "Focus on your breathing. 1, 2, 3... You are in control.", "Let's ground ourselves. What is one thing you can see right now? 👀"],
+    happy: ["That is wonderful news! 🎉 I love seeing you happy!", "Your joy makes me happy too! ✨ Keep shining!", "Yay! Hold onto this feeling. You deserve it! 💛"],
+    default: ["I'm listening. Tell me more about that. 💙", "I'm here with you. How does that make you feel?", "Your feelings are valid. I'm listening. 🌿"]
+};
+
+function getLocalResponse(message) {
+    const lower = message.toLowerCase();
+    if (lower.match(/\b(hi|hello|hey|greetings)\b/)) return localResponses.greetings[Math.floor(Math.random() * localResponses.greetings.length)];
+    if (lower.match(/\b(sad|cry|unhappy|depressed|hurt|pain)\b/)) return localResponses.sad[Math.floor(Math.random() * localResponses.sad.length)];
+    if (lower.match(/\b(stress|busy|work|pressure|tired|overwhelmed)\b/)) return localResponses.stress[Math.floor(Math.random() * localResponses.stress.length)];
+    if (lower.match(/\b(anxious|scared|fear|worry|panic|nervous)\b/)) return localResponses.anxious[Math.floor(Math.random() * localResponses.anxious.length)];
+    if (lower.match(/\b(happy|good|great|joy|awesome|love)\b/)) return localResponses.happy[Math.floor(Math.random() * localResponses.happy.length)];
+    return localResponses.default[Math.floor(Math.random() * localResponses.default.length)];
+}
+
 app.post('/api/chat', async (req, res) => {
-    try {
-        const userMessage = req.body.message;
+    const userMessage = req.body.message;
 
-        if (!process.env.GEMINI_API_KEY) {
-            console.warn("WARNING: GEMINI_API_KEY is missing in .env file");
+    // 1️⃣ Try OpenAI if API key is set
+    if (process.env.OPENAI_API_KEY) {
+        try {
+            const openaiResp = await axios.post(
+                'https://api.openai.com/v1/chat/completions',
+                {
+                    model: 'gpt-3.5-turbo',
+                    messages: [
+                        { role: 'system', content: SYSTEM_PROMPT },
+                        { role: 'user', content: userMessage }
+                    ],
+                    max_tokens: 150,
+                    temperature: 0.7
+                },
+                { headers: { 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`, 'Content-Type': 'application/json' } }
+            );
+            const reply = openaiResp.data?.choices?.[0]?.message?.content;
+            if (reply) return res.json({ reply: reply.trim() });
+        } catch (err) {
+            console.warn('OpenAI request failed, falling back →', err.message);
         }
-
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-        const chat = model.startChat({
-            history: [
-                {
-                    role: "user",
-                    parts: [{ text: SYSTEM_PROMPT }],
-                },
-                {
-                    role: "model",
-                    parts: [{ text: "I understand. I am MindBloom, ready to offer compassionate support. 💙" }],
-                },
-            ],
-            generationConfig: {
-                maxOutputTokens: 150,
-            },
-        });
-
-        const result = await chat.sendMessage(userMessage);
-        const response = await result.response;
-        const text = response.text();
-
-        res.json({ reply: text });
-
-    } catch (error) {
-        console.error('Error with Gemini API:', error);
-        // Fallback response if API fails or no key provided
-        res.json({
-            reply: "I'm having a little trouble connecting to my brain right now 🧠. But I'm still here with you! Maybe try asking again in a moment? 💙"
-        });
     }
+
+    // 2️⃣ If OpenAI not available or fails, use local smart fallback
+    const localReply = getLocalResponse(userMessage);
+    res.json({ reply: localReply });
 });
 
 // Serve the main HTML file for root
