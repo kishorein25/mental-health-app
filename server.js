@@ -13,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 // Serve "public" folder at the "/public" route so links like "public/css/style.css" work
 app.use('/public', express.static('public'));
+app.use(express.static('public')); // Also serve at root so /chatbot.html works
 
 // Initialize Gemini AI
 console.log("Current working directory:", process.cwd());
@@ -56,6 +57,34 @@ function getLocalResponse(message) {
 app.post('/api/chat', async (req, res) => {
     const userMessage = req.body.message;
 
+    // 0️⃣ Try Groq AI if API key is set (High priority - Fast & Smart)
+    if (process.env.GROQ_API_KEY) {
+        console.log('Attempting Groq API call...');
+        try {
+            const groqResp = await axios.post(
+                'https://api.groq.com/openai/v1/chat/completions',
+                {
+                    model: 'llama-3.3-70b-versatile',
+                    messages: [
+                        { role: 'system', content: SYSTEM_PROMPT },
+                        { role: 'user', content: userMessage }
+                    ],
+                    max_tokens: 1024,
+                    temperature: 0.7
+                },
+                { headers: { 'Authorization': `Bearer ${process.env.GROQ_API_KEY}`, 'Content-Type': 'application/json' } }
+            );
+            const reply = groqResp.data?.choices?.[0]?.message?.content;
+            if (reply) return res.json({ reply: reply.trim() });
+        } catch (err) {
+            console.error('Groq request failed details:', err.response?.data || err.message);
+            // Send error to user to help debug
+            return res.json({ reply: `⚠️ Groq AI Error: ${err.message}. Check server logs.` });
+        }
+    } else {
+        console.log('GROQ_API_KEY is missing in process.env');
+    }
+
     // 1️⃣ Try OpenAI if API key is set
     if (process.env.OPENAI_API_KEY) {
         try {
@@ -79,7 +108,25 @@ app.post('/api/chat', async (req, res) => {
         }
     }
 
-    // 2️⃣ If OpenAI not available or fails, use local smart fallback
+    // 2️⃣ If OpenAI fails, try free HuggingFace model
+    try {
+        const hfResp = await axios.post(
+            'https://api-inference.huggingface.co/models/facebook/opt-125m',
+            { inputs: userMessage },
+            { headers: { 'Authorization': `Bearer ${process.env.HF_API_KEY}`, 'Content-Type': 'application/json' } }
+        );
+        // HF may return a string or an array with generated_text
+        if (typeof hfResp.data === 'string') {
+            return res.json({ reply: hfResp.data.trim() });
+        }
+        if (Array.isArray(hfResp.data) && hfResp.data[0]?.generated_text) {
+            return res.json({ reply: hfResp.data[0].generated_text.trim() });
+        }
+    } catch (hfErr) {
+        console.warn('HF request failed →', hfErr.message);
+    }
+
+    // 3️⃣ Final fallback – local smart responses
     const localReply = getLocalResponse(userMessage);
     res.json({ reply: localReply });
 });

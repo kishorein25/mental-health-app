@@ -35,7 +35,10 @@ Render will automatically detect most settings, but double-check these:
 2. Click **"Add Environment Variable"**.
 3. **Key:** `GEMINI_API_KEY`
 4. **Value:** Paste your API Key from Google AI Studio here.
-   *(Get one at: https://aistudio.google.com/app/apikey if you haven't yet)*
+5. Click **"Add Environment Variable"** again.
+6. **Key:** `GROQ_API_KEY` (Optional but recommended for speed)
+7. **Value:** Paste your Groq API Key.
+   *(Get one at: https://console.groq.com/keys)*
 
 ### Step 6: Deploy!
 1. Click **"Create Web Service"**.

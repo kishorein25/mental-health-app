@@ -11,7 +11,7 @@ A comprehensive mental wellness application featuring an AI chatbot, relaxing mu
 
 ## ✨ Features
 
-- 🤖 **AI Chatbot** - Supportive conversations for emotional wellness
+- 🤖 **AI Chatbot** - Supportive conversations with **Groq AI (Llama 3)**, OpenAI, or local fallback
 - 🎵 **Music Therapy** - Calming music and binaural beats
 - 🎮 **Mind Games** - Brain exercises and puzzles
 - 💃 **Dance Therapy** - Movement-based wellness
