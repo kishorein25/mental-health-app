@@ -67,6 +67,22 @@ mindbloom-app/
 
 ---
 
+## ⚙️ DevOps & Infrastructure
+
+This project utilizes a modern DevSecOps pipeline to ensure quality, security, and reliability.
+
+| Area | Tool Used | Description |
+| :--- | :--- | :--- |
+| **CI/CD** | **GitHub Actions** | Automated workflows for building Docker images and running security scans on every push. |
+| **Containerization** | **Docker** | Application packaged as a lightweight, portable container image. |
+| **Registry** | **GHCR** | Docker images are published to the GitHub Container Registry. |
+| **Orchestration** | **Kubernetes** | Deployment manifests (`k8s/`) defined for scalable orchestration. |
+| **Security** | **CodeQL** | Automated semantic code analysis to detect vulnerabilities. |
+| **Dependency Mgmt** | **Dependabot** | Automated monitoring for outdated or insecure npm/docker dependencies. |
+| **Monitoring** | **GitHub Actions** | Build logs and workflow status checks for real-time feedback. |
+
+---
+
 ## 📄 License
 This project is licensed under the MIT License.
 
