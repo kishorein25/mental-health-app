@@ -1,159 +1,74 @@
-# 🌸 MindBloom - Mental Wellness App
+# 🌸 MindBloom - AI-Powered Mental Wellness Hub
 
-A comprehensive mental wellness application featuring an AI chatbot, relaxing music, binaural beats, and mind games to help improve your mental well-being.
+MindBloom is a compassionate, state-of-the-art mental wellness platform designed to provide emotional support and relaxation through advanced AI and therapeutic tools.
 
-**🌐 Live App: [Click here to Deploy your own!](DEPLOY_TO_RENDER.md)**
+**🌐 Live Application: [mindbloom-app.onrender.com](https://mindbloom-app.onrender.com)**
 
-![MindBloom](https://img.shields.io/badge/MindBloom-Wellness%20App-green)
-![Node.js](https://img.shields.io/badge/Node.js-Server-brightgreen)
-![Render](https://img.shields.io/badge/Deploy%20on-Render-blue)
-![License](https://img.shields.io/badge/License-MIT-blue)
+---
 
-## ✨ Features
+## ✨ Premium Features
 
-- 🤖 **AI Chatbot** - Supportive conversations with **Groq AI (Llama 3)**, OpenAI, or local fallback
-- 🎵 **Music Therapy** - Calming music and binaural beats
-- 🎮 **Mind Games** - Brain exercises and puzzles
-- 💃 **Dance Therapy** - Movement-based wellness
-- 🎬 **Movie Recommendations** - Feel-good movie suggestions
+*   🤖 **AI Companion** – Empathetic conversations powered by **Groq Llama 3**, providing high-speed, intelligent emotional support.
+*   🎵 **Therapeutic Audio** – Curated binaural beats and calming frequencies for deep relaxation and focus.
+*   🎮 **Mind Wellness Games** – Interactive exercises designed to ground you and reduce anxiety in real-time.
+*   🧘 **Holistic Wellness** – Dedicated modules for Dance Therapy, Movie Recommendations, and Mood-based music playlists.
 
-## 🚀 Quick Start
+---
 
-### Run Locally
+## 🚀 Getting Started
 
+### Local Setup
 ```bash
 # Clone the repository
 git clone https://github.com/kishorein25/mental-health-app.git
 cd mental-health-app
 
-# Install dependencies (if any)
+# Install dependencies
 npm install
 
 # Start the server
 npm start
-
-# Open in browser
-# Visit: http://localhost:8000
 ```
-
-### Run on GitHub Codespaces
-
-1. Go to the repository: https://github.com/kishorein25/mental-health-app
-2. Click the green **Code** button
-3. Select **Codespaces** tab
-4. Click **Create codespace on main**
-5. Once loaded, run in terminal:
-   ```bash
-   npm start
-   ```
-6. Click the **Ports** tab and open port 8000
+*Application will be available at `http://localhost:8001/`*
 
 ---
 
-## 🌐 Deploy for FREE (24/7 Hosting)
+## ☁️ Deployment
 
-### Option 1: Render.com (Recommended ⭐)
+MindBloom is optimized for deployment on **Render**.
 
-**Free tier with 24/7 hosting!**
-
-1. Go to [render.com](https://render.com) and sign up with GitHub
-2. Click **New +** → **Web Service**
-3. Connect your GitHub repository: `kishorein25/mental-health-app`
-4. Configure:
-   - **Name**: `mental-health-app`
-   - **Runtime**: `Node`
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-5. Click **Create Web Service**
-6. Your app will be live at: `https://mental-health-app.onrender.com`
-
-### Option 2: Railway.app
-
-1. Go to [railway.app](https://railway.app) and sign up with GitHub
-2. Click **New Project** → **Deploy from GitHub repo**
-3. Select `mental-health-app`
-4. Railway auto-detects Node.js and deploys
-5. Click **Generate Domain** to get your URL
-
-### Option 3: Vercel (Static + Serverless)
-
-1. Go to [vercel.com](https://vercel.com) and sign up with GitHub
-2. Click **Add New** → **Project**
-3. Import `mental-health-app` repository
-4. Deploy (automatic)
-5. Your app will be live instantly!
-
-### Option 4: Netlify (For Static Sites)
-
-1. Go to [netlify.com](https://netlify.com) and sign up with GitHub
-2. Click **Add new site** → **Import an existing project**
-3. Connect to GitHub and select `mental-health-app`
-4. Set **Publish directory**: `.` (root)
-5. Deploy!
-
-### Option 5: Glitch.com
-
-1. Go to [glitch.com](https://glitch.com)
-2. Click **New Project** → **Import from GitHub**
-3. Paste: `https://github.com/kishorein25/mental-health-app`
-4. Your app auto-runs 24/7!
+1.  Connect your GitHub repository to [Render](https://render.com).
+2.  Set the **Runtime** to `Node`.
+3.  Set the **Build Command** to `npm install`.
+4.  Set the **Start Command** to `node server.js`.
+5.  **Environment Variables**: Ensure `GROQ_API_KEY` is set in the Render dashboard for the AI to function.
 
 ---
 
-## 📁 Project Structure
+## 📁 Architecture
 
-```
-mental-health-app/
-├── index.html          # Main landing page
-├── server.js           # Node.js server
-├── package.json        # Dependencies
+```text
+mindbloom-app/
+├── server.js           # Express.js Backend with AI Integration
 ├── public/
-│   ├── chatbot.html    # AI Chatbot interface
-│   ├── music.html      # Music therapy page
-│   ├── songs.html      # Songs collection
-│   ├── dance.html      # Dance therapy
-│   ├── games.html      # Mind games
-│   ├── movies.html     # Movie recommendations
-│   ├── css/
-│   │   └── style.css   # Main stylesheet
-│   └── js/
-│       ├── chatbot.js  # Chatbot logic
-│       ├── main.js     # Main JavaScript
-│       └── games.js    # Games logic
+│   ├── chatbot.html    # AI Interface
+│   ├── logic/          # Frontend logic (JS)
+│   └── css/            # Premium Styling
 ```
+
+---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Backend**: Node.js (HTTP Server)
-- **No external dependencies** - Pure vanilla implementation!
-
-## 📖 Documentation
-
-- [Quick Start Guide](QUICKSTART.md)
-- [User Guide](USER_GUIDE.md)
-- [Features Overview](FEATURES.md)
-- [Chatbot Documentation](CHATBOT_FEATURES.md)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👤 Author
-
-**kishorein25**
-- GitHub: [@kishorein25](https://github.com/kishorein25)
+*   **Frontend**: HTML5, Vanilla CSS3 (Custom Design), Modern JS
+*   **Backend**: Node.js, Express.js
+*   **AI Engine**: Groq (Llama 3.3 70B Versatile)
+*   **API**: Axios for stable model communication
 
 ---
 
-⭐ **Star this repo if you find it helpful!**
+## 📄 License
+This project is licensed under the MIT License.
 
-🧘 *Take care of your mental health. You matter!*
+---
+🧘 *Prioritize your peace. You matter.*
