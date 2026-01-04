@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music & Wellness - Mental Wellness Hub</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         .music-container {
             max-width: 1000px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
-        
+
         .mood-tabs {
             display: flex;
             gap: 1rem;
@@ -20,7 +22,7 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-        
+
         .mood-tab {
             padding: 0.8rem 1.5rem;
             background: rgba(255, 255, 255, 0.1);
@@ -32,26 +34,26 @@
             font-size: 1rem;
             font-weight: 500;
         }
-        
+
         .mood-tab.active {
             background: #667eea;
             border-color: #667eea;
             transform: scale(1.05);
         }
-        
+
         .mood-tab:hover {
             background: rgba(102, 126, 234, 0.8);
         }
-        
+
         .playlist {
             display: none;
         }
-        
+
         .playlist.active {
             display: block;
             animation: fadeInUp 0.5s ease;
         }
-        
+
         .song-item {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -64,24 +66,24 @@
             transition: 0.3s;
             border-left: 5px solid #667eea;
         }
-        
+
         .song-item:hover {
             background: rgba(255, 255, 255, 0.15);
             transform: translateX(10px);
         }
-        
+
         .song-info h3 {
             margin: 0 0 0.5rem 0;
             color: #fff;
             font-size: 1.2rem;
         }
-        
+
         .song-info p {
             margin: 0.3rem 0;
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.95rem;
         }
-        
+
         .play-btn {
             background: #667eea;
             color: white;
@@ -93,12 +95,12 @@
             transition: 0.3s;
             white-space: nowrap;
         }
-        
+
         .play-btn:hover {
             background: #764ba2;
             transform: scale(1.05);
         }
-        
+
         .mood-description {
             text-align: center;
             color: rgba(255, 255, 255, 0.8);
@@ -106,12 +108,13 @@
             font-size: 1.1rem;
             font-weight: 500;
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -119,13 +122,14 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>🎵 Music & Wellness</h1>
         <p>Carefully curated songs to heal your heart and soothe your soul</p>
-        <a href="../index.html" style="color: white; text-decoration: none; opacity: 0.9; font-size: 1.1rem;">← Back to Home</a>
+        <a href="/" style="color: white; text-decoration: none; opacity: 0.9; font-size: 1.1rem;">← Back to Home</a>
     </header>
-    
+
     <div class="music-container">
         <div class="mood-tabs">
             <button class="mood-tab active" onclick="switchMood('sad')">💔 Sad & Hurting</button>
@@ -134,215 +138,239 @@
             <button class="mood-tab" onclick="switchMood('focus')">💼 Work & Focus</button>
             <button class="mood-tab" onclick="switchMood('sleep')">😴 Calm & Sleep</button>
         </div>
-        
+
         <!-- Sad & Hurting Playlist -->
         <div id="sad" class="playlist active">
             <div class="mood-description">
-                💙 When your heart is hurting, sometimes beautiful sad music helps you process. These songs understand your pain and remind you that you're not alone.
+                💙 When your heart is hurting, sometimes beautiful sad music helps you process. These songs understand
+                your pain and remind you that you're not alone.
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Someone Like You - Adele</h3>
                     <p>A powerful ballad about loss and healing. Let your tears flow. 💙</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Someone+Like+You+Adele" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Someone+Like+You+Adele" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>The Night We Met - Lord Huron</h3>
                     <p>Gentle and reflective - perfect for processing difficult emotions. 🌙</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=The+Night+We+Met+Lord+Huron" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=The+Night+We+Met+Lord+Huron" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Skinny Love - Bon Iver</h3>
                     <p>Haunting and beautiful, helps you feel your feelings fully. ❄️</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Skinny+Love+Bon+Iver" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Skinny+Love+Bon+Iver" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Mad World - Gary Jules</h3>
                     <p>Melancholic but moving. For when you need to feel understood. 🌊</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Mad+World+Gary+Jules" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Mad+World+Gary+Jules" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
         </div>
-        
+
         <!-- Stressed & Overwhelmed Playlist -->
         <div id="stressed" class="playlist">
             <div class="mood-description">
-                😰 When pressure is crushing you, these songs help calm your nervous system and remind you that you're stronger than your stress.
+                😰 When pressure is crushing you, these songs help calm your nervous system and remind you that you're
+                stronger than your stress.
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Breathe - The Prodigy</h3>
                     <p>Calming and grounding. Helps you remember to breathe. 🌬️</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Breathe+The+Prodigy" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Breathe+The+Prodigy" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Weightless - Marconi Union</h3>
                     <p>Scientifically proven to reduce anxiety. Pure relaxation. ✨</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Weightless+Marconi+Union" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Weightless+Marconi+Union" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Lean On Me - Bill Withers</h3>
                     <p>Reminds you that you don't have to carry it all alone. 💙</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Lean+On+Me+Bill+Withers" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Lean+On+Me+Bill+Withers" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Easy On Me - Adele</h3>
                     <p>Soothing and empowering. You're doing better than you think. 🌟</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Easy+On+Me+Adele" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Easy+On+Me+Adele" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
         </div>
-        
+
         <!-- Happy & Uplifting Playlist -->
         <div id="happy" class="playlist">
             <div class="mood-description">
                 🎉 When joy fills your heart, amplify it with these uplifting songs! Dance, sing, celebrate yourself!
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Good As Hell - Lizzo</h3>
                     <p>Pure celebration of YOU. Dance and feel your worth! 💃</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Good+As+Hell+Lizzo" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Good+As+Hell+Lizzo" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Walking on Sunshine - Katrina & The Waves</h3>
                     <p>Infectious joy and positivity. Impossible not to smile! 🌞</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Walking+on+Sunshine+Katrina" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Walking+on+Sunshine+Katrina" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Don't Stop Me Now - Queen</h3>
                     <p>Legendary and empowering. Feel unstoppable! 👑</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Dont+Stop+Me+Now+Queen" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Dont+Stop+Me+Now+Queen" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Walking on Sunshine - Good as Hell Mashup</h3>
                     <p>Double the joy, double the celebration of life! 🌈</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=happy+uplifting+songs+mashup" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=happy+uplifting+songs+mashup" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
         </div>
-        
+
         <!-- Work & Focus Playlist -->
         <div id="focus" class="playlist">
             <div class="mood-description">
-                💼 For professionals and students who need to focus without pressure. These songs boost productivity while keeping you calm.
+                💼 For professionals and students who need to focus without pressure. These songs boost productivity
+                while keeping you calm.
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Instrumental Piano Focus Mix</h3>
                     <p>Classical piano for deep work. Zero distractions, pure focus. 🎹</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=instrumental+piano+focus+music" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=instrumental+piano+focus+music" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Lo-Fi Hip Hop Beats - Study Mix</h3>
                     <p>Smooth beats perfect for studying or deep work. Cozy vibes. ☕</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=lofi+hip+hop+beats+study" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=lofi+hip+hop+beats+study" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Productivity Focus - Ambient Mix</h3>
                     <p>Minimal, focused, professional. Perfect for your work zone. 🎧</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=ambient+focus+productivity+music" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=ambient+focus+productivity+music" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Motivational Work Playlist</h3>
                     <p>Energizing beats to keep you motivated through projects. ⚡</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=motivational+work+music+professional" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=motivational+work+music+professional"
+                    target="_blank" class="play-btn">🎵 Listen</a>
             </div>
         </div>
-        
+
         <!-- Calm & Sleep Playlist -->
         <div id="sleep" class="playlist">
             <div class="mood-description">
                 😴 Wind down with these peaceful songs. Perfect for evening relaxation and deep, restorative sleep.
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Moonlight Sonata - Beethoven</h3>
                     <p>Classical masterpiece for deep peace. Let stress melt away. 🌙</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Moonlight+Sonata+Beethoven" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Moonlight+Sonata+Beethoven" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Weightless - Marconi Union Extended</h3>
                     <p>Extended version for deep sleep and recovery. Pure tranquility. ✨</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=Weightless+Marconi+Union+10+hours" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=Weightless+Marconi+Union+10+hours" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Ocean Waves & Ambient Sounds</h3>
                     <p>Natural sounds to guide you into restful sleep. 🌊</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=ocean+waves+sleep+ambient" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=ocean+waves+sleep+ambient" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
-            
+
             <div class="song-item">
                 <div class="song-info">
                     <h3>Rain Sound - Sleep Meditation</h3>
                     <p>Gentle rain sounds with meditation guide. Perfect for insomnia. 🌧️</p>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=rain+sound+sleep+meditation" target="_blank" class="play-btn">🎵 Listen</a>
+                <a href="https://www.youtube.com/results?search_query=rain+sound+sleep+meditation" target="_blank"
+                    class="play-btn">🎵 Listen</a>
             </div>
         </div>
     </div>
-    
+
     <script>
         function switchMood(mood) {
             // Hide all playlists
             document.querySelectorAll('.playlist').forEach(p => p.classList.remove('active'));
-            
+
             // Show selected playlist
             document.getElementById(mood).classList.add('active');
-            
+
             // Update tab styling
             document.querySelectorAll('.mood-tab').forEach(tab => tab.classList.remove('active'));
             event.target.classList.add('active');
         }
     </script>
 </body>
+
 </html>

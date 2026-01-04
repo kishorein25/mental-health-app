@@ -11,9 +11,9 @@ const PORT = process.env.PORT || 8000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-// Serve "public" folder at the "/public" route so links like "public/css/style.css" work
+// Serve "public" folder at the "/public" route AND root so clean URLs work
 app.use('/public', express.static('public'));
-app.use(express.static('public')); // Also serve at root so /chatbot.html works
+app.use(express.static('public'));
 
 // Initialize Gemini AI
 console.log("Current working directory:", process.cwd());

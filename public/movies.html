@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies & Shows - Mental Wellness Hub</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         .content-container {
             max-width: 1100px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
-        
+
         .mood-filter {
             display: flex;
             gap: 1rem;
@@ -20,7 +22,7 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-        
+
         .filter-btn {
             padding: 0.8rem 1.5rem;
             background: rgba(255, 255, 255, 0.1);
@@ -32,24 +34,24 @@
             font-size: 1rem;
             font-weight: 500;
         }
-        
+
         .filter-btn.active {
             background: #667eea;
             border-color: #667eea;
             transform: scale(1.05);
         }
-        
+
         .filter-btn:hover {
             background: rgba(102, 126, 234, 0.8);
         }
-        
+
         .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
-        
+
         .content-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -58,42 +60,42 @@
             transition: 0.3s;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .content-card:hover {
             transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.15);
             border-color: rgba(102, 126, 234, 0.5);
         }
-        
+
         .content-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 1.5rem;
             text-align: center;
         }
-        
+
         .content-header h3 {
             margin: 0;
             color: white;
             font-size: 1.3rem;
         }
-        
+
         .content-header .type {
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.8);
             margin-top: 0.3rem;
         }
-        
+
         .content-body {
             padding: 1.5rem;
         }
-        
+
         .mood-tags {
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
             margin-bottom: 1rem;
         }
-        
+
         .mood-tag {
             background: rgba(102, 126, 234, 0.3);
             padding: 0.3rem 0.8rem;
@@ -101,14 +103,14 @@
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.9);
         }
-        
+
         .description {
             color: rgba(255, 255, 255, 0.85);
             line-height: 1.6;
             margin-bottom: 1rem;
             font-size: 0.95rem;
         }
-        
+
         .why-watch {
             background: rgba(0, 0, 0, 0.2);
             padding: 1rem;
@@ -116,20 +118,20 @@
             margin-bottom: 1rem;
             border-left: 3px solid #667eea;
         }
-        
+
         .why-watch strong {
             color: #fff;
             display: block;
             margin-bottom: 0.5rem;
         }
-        
+
         .why-watch p {
             color: rgba(255, 255, 255, 0.8);
             margin: 0;
             font-size: 0.95rem;
             line-height: 1.5;
         }
-        
+
         .watch-btn {
             display: inline-block;
             background: #667eea;
@@ -145,32 +147,33 @@
             font-size: 1rem;
             font-weight: 500;
         }
-        
+
         .watch-btn:hover {
             background: #764ba2;
             transform: scale(1.05);
         }
-        
+
         .category-description {
             text-align: center;
             color: rgba(255, 255, 255, 0.8);
             margin: 2rem 0;
             font-size: 1.05rem;
         }
-        
+
         .hidden {
             display: none;
         }
-        
+
         .show {
             animation: fadeInUp 0.5s ease;
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -178,13 +181,14 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>🎬 Movies & Shows for Healing</h1>
         <p>Carefully curated content to uplift, inspire, and heal your heart</p>
-        <a href="../index.html" style="color: white; text-decoration: none; opacity: 0.9; font-size: 1.1rem;">← Back to Home</a>
+        <a href="/" style="color: white; text-decoration: none; opacity: 0.9; font-size: 1.1rem;">← Back to Home</a>
     </header>
-    
+
     <div class="content-container">
         <div class="mood-filter">
             <button class="filter-btn active" onclick="filterContent('all')">All Content</button>
@@ -193,11 +197,12 @@
             <button class="filter-btn" onclick="filterContent('inspire')">✨ Inspiration</button>
             <button class="filter-btn" onclick="filterContent('relax')">😴 Relaxing</button>
         </div>
-        
+
         <div class="category-description" id="categoryDesc">
-            Dive into stories that understand your heart and help you heal. Sometimes the right movie at the right time can change everything. 💙
+            Dive into stories that understand your heart and help you heal. Sometimes the right movie at the right time
+            can change everything. 💙
         </div>
-        
+
         <div class="content-grid" id="contentGrid">
             <!-- Healing from Pain -->
             <div class="content-card" data-category="sad">
@@ -212,16 +217,18 @@
                         <span class="mood-tag">💪 Strength</span>
                     </div>
                     <p class="description">
-                        A powerful story of two men finding friendship and hope in the darkest place. If you're feeling trapped or hopeless, this movie reminds you that light always finds a way.
+                        A powerful story of two men finding friendship and hope in the darkest place. If you're feeling
+                        trapped or hopeless, this movie reminds you that light always finds a way.
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>Shows how friendship heals, hope persists even in darkness, and freedom (of mind) is always possible. Deeply moving and ultimately uplifting.</p>
+                        <p>Shows how friendship heals, hope persists even in darkness, and freedom (of mind) is always
+                            possible. Deeply moving and ultimately uplifting.</p>
                     </div>
                     <a href="https://www.netflix.com/search?q=shawshank" target="_blank" class="watch-btn">Watch Now</a>
                 </div>
             </div>
-            
+
             <div class="content-card" data-category="sad">
                 <div class="content-header">
                     <h3>Life is Beautiful</h3>
@@ -234,16 +241,19 @@
                         <span class="mood-tag">✨ Hope</span>
                     </div>
                     <p class="description">
-                        An Italian masterpiece about a father shielding his son from horror through imagination and love. A testament to how love transcends all pain.
+                        An Italian masterpiece about a father shielding his son from horror through imagination and
+                        love. A testament to how love transcends all pain.
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>Will make you cry but also fill your heart with profound love. Shows that beauty and hope exist even in the darkest moments. Healing and deeply human.</p>
+                        <p>Will make you cry but also fill your heart with profound love. Shows that beauty and hope
+                            exist even in the darkest moments. Healing and deeply human.</p>
                     </div>
-                    <a href="https://www.netflix.com/search?q=life+is+beautiful" target="_blank" class="watch-btn">Watch Now</a>
+                    <a href="https://www.netflix.com/search?q=life+is+beautiful" target="_blank" class="watch-btn">Watch
+                        Now</a>
                 </div>
             </div>
-            
+
             <div class="content-card" data-category="sad">
                 <div class="content-header">
                     <h3>About Time</h3>
@@ -256,16 +266,19 @@
                         <span class="mood-tag">✨ Appreciation</span>
                     </div>
                     <p class="description">
-                        A story about cherishing moments with loved ones. Even when life is hard, these connections matter most. Beautiful and deeply touching.
+                        A story about cherishing moments with loved ones. Even when life is hard, these connections
+                        matter most. Beautiful and deeply touching.
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>Reminds you what truly matters - the people you love and the small moments of daily life. Will help shift perspective about what's important.</p>
+                        <p>Reminds you what truly matters - the people you love and the small moments of daily life.
+                            Will help shift perspective about what's important.</p>
                     </div>
-                    <a href="https://www.netflix.com/search?q=about+time" target="_blank" class="watch-btn">Watch Now</a>
+                    <a href="https://www.netflix.com/search?q=about+time" target="_blank" class="watch-btn">Watch
+                        Now</a>
                 </div>
             </div>
-            
+
             <!-- Feel Good -->
             <div class="content-card" data-category="happy">
                 <div class="content-header">
@@ -279,16 +292,19 @@
                         <span class="mood-tag">✨ Inspiring</span>
                     </div>
                     <p class="description">
-                        An uplifting journey of a simple man who achieves extraordinary things. It will make you smile and believe in possibilities.
+                        An uplifting journey of a simple man who achieves extraordinary things. It will make you smile
+                        and believe in possibilities.
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>Pure joy and inspiration. Shows that you don't need to be perfect to be valuable. Heartwarming, funny, and deeply human.</p>
+                        <p>Pure joy and inspiration. Shows that you don't need to be perfect to be valuable.
+                            Heartwarming, funny, and deeply human.</p>
                     </div>
-                    <a href="https://www.netflix.com/search?q=forrest+gump" target="_blank" class="watch-btn">Watch Now</a>
+                    <a href="https://www.netflix.com/search?q=forrest+gump" target="_blank" class="watch-btn">Watch
+                        Now</a>
                 </div>
             </div>
-            
+
             <div class="content-card" data-category="happy">
                 <div class="content-header">
                     <h3>Spirited Away</h3>
@@ -301,16 +317,19 @@
                         <span class="mood-tag">🌈 Beauty</span>
                     </div>
                     <p class="description">
-                        A magical journey of a girl finding her strength and identity. Visually stunning and emotionally uplifting.
+                        A magical journey of a girl finding her strength and identity. Visually stunning and emotionally
+                        uplifting.
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>Pure magic and beauty. Shows how ordinary people can be extraordinary. Perfect for escaping into wonder and hope.</p>
+                        <p>Pure magic and beauty. Shows how ordinary people can be extraordinary. Perfect for escaping
+                            into wonder and hope.</p>
                     </div>
-                    <a href="https://www.netflix.com/search?q=spirited+away" target="_blank" class="watch-btn">Watch Now</a>
+                    <a href="https://www.netflix.com/search?q=spirited+away" target="_blank" class="watch-btn">Watch
+                        Now</a>
                 </div>
             </div>
-            
+
             <div class="content-card" data-category="happy">
                 <div class="content-header">
                     <h3>Coco</h3>
@@ -323,16 +342,18 @@
                         <span class="mood-tag">😊 Joy</span>
                     </div>
                     <p class="description">
-                        A celebration of family, love, and following your dreams. Colorful, musical, and absolutely delightful.
+                        A celebration of family, love, and following your dreams. Colorful, musical, and absolutely
+                        delightful.
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>Pure joy and celebration! Shows that love transcends everything. You'll laugh, you'll cry happy tears, and you'll believe in yourself.</p>
+                        <p>Pure joy and celebration! Shows that love transcends everything. You'll laugh, you'll cry
+                            happy tears, and you'll believe in yourself.</p>
                     </div>
                     <a href="https://www.netflix.com/search?q=coco" target="_blank" class="watch-btn">Watch Now</a>
                 </div>
             </div>
-            
+
             <!-- Inspiration -->
             <div class="content-card" data-category="inspire">
                 <div class="content-header">
@@ -346,16 +367,19 @@
                         <span class="mood-tag">👯 Friendship</span>
                     </div>
                     <p class="description">
-                        The true story of Black women mathematicians who changed history. Inspiring, powerful, and deeply moving.
+                        The true story of Black women mathematicians who changed history. Inspiring, powerful, and
+                        deeply moving.
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>Shows incredible strength and resilience. These women overcame impossible odds. You will feel inspired and empowered.</p>
+                        <p>Shows incredible strength and resilience. These women overcame impossible odds. You will feel
+                            inspired and empowered.</p>
                     </div>
-                    <a href="https://www.netflix.com/search?q=hidden+figures" target="_blank" class="watch-btn">Watch Now</a>
+                    <a href="https://www.netflix.com/search?q=hidden+figures" target="_blank" class="watch-btn">Watch
+                        Now</a>
                 </div>
             </div>
-            
+
             <div class="content-card" data-category="inspire">
                 <div class="content-header">
                     <h3>The Pursuit of Happiness</h3>
@@ -368,16 +392,19 @@
                         <span class="mood-tag">✨ Hope</span>
                     </div>
                     <p class="description">
-                        A father fighting for his and his son's survival. Real, raw, and ultimately triumphant. Based on a true story.
+                        A father fighting for his and his son's survival. Real, raw, and ultimately triumphant. Based on
+                        a true story.
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>If you're struggling, this shows someone who didn't give up. Powerful reminder that you can overcome hardship. Very inspiring.</p>
+                        <p>If you're struggling, this shows someone who didn't give up. Powerful reminder that you can
+                            overcome hardship. Very inspiring.</p>
                     </div>
-                    <a href="https://www.netflix.com/search?q=pursuit+of+happiness" target="_blank" class="watch-btn">Watch Now</a>
+                    <a href="https://www.netflix.com/search?q=pursuit+of+happiness" target="_blank"
+                        class="watch-btn">Watch Now</a>
                 </div>
             </div>
-            
+
             <div class="content-card" data-category="inspire">
                 <div class="content-header">
                     <h3>Whiplash</h3>
@@ -394,12 +421,13 @@
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>Shows the power of dedication and passion. Reminds you that greatness requires sacrifice and commitment. Musically beautiful.</p>
+                        <p>Shows the power of dedication and passion. Reminds you that greatness requires sacrifice and
+                            commitment. Musically beautiful.</p>
                     </div>
                     <a href="https://www.netflix.com/search?q=whiplash" target="_blank" class="watch-btn">Watch Now</a>
                 </div>
             </div>
-            
+
             <!-- Relaxing -->
             <div class="content-card" data-category="relax">
                 <div class="content-header">
@@ -413,16 +441,19 @@
                         <span class="mood-tag">🌿 Calming</span>
                     </div>
                     <p class="description">
-                        My Neighbor Totoro, Kiki's Delivery Service, or Howl's Moving Castle. Pure visual poetry that soothes the soul.
+                        My Neighbor Totoro, Kiki's Delivery Service, or Howl's Moving Castle. Pure visual poetry that
+                        soothes the soul.
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>Incredibly calming and beautiful. Perfect for when you need to escape and relax. Each film is a gentle hug for your mind.</p>
+                        <p>Incredibly calming and beautiful. Perfect for when you need to escape and relax. Each film is
+                            a gentle hug for your mind.</p>
                     </div>
-                    <a href="https://www.netflix.com/search?q=studio+ghibli" target="_blank" class="watch-btn">Watch Now</a>
+                    <a href="https://www.netflix.com/search?q=studio+ghibli" target="_blank" class="watch-btn">Watch
+                        Now</a>
                 </div>
             </div>
-            
+
             <div class="content-card" data-category="relax">
                 <div class="content-header">
                     <h3>The Great British Bake Off</h3>
@@ -439,12 +470,13 @@
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>Incredibly wholesome and calming. People being kind to each other! Perfect for anxiety or insomnia. You'll feel wrapped in warmth.</p>
+                        <p>Incredibly wholesome and calming. People being kind to each other! Perfect for anxiety or
+                            insomnia. You'll feel wrapped in warmth.</p>
                     </div>
                     <a href="https://www.netflix.com/search?q=bake+off" target="_blank" class="watch-btn">Watch Now</a>
                 </div>
             </div>
-            
+
             <div class="content-card" data-category="relax">
                 <div class="content-header">
                     <h3>Planet Earth / Nature Documentaries</h3>
@@ -461,14 +493,16 @@
                     </p>
                     <div class="why-watch">
                         <strong>💙 Why watch:</strong>
-                        <p>Deeply grounding and peaceful. Reminds you of Earth's beauty. Perfect for meditation, sleep, or just calming your mind and soul.</p>
+                        <p>Deeply grounding and peaceful. Reminds you of Earth's beauty. Perfect for meditation, sleep,
+                            or just calming your mind and soul.</p>
                     </div>
-                    <a href="https://www.netflix.com/search?q=planet+earth" target="_blank" class="watch-btn">Watch Now</a>
+                    <a href="https://www.netflix.com/search?q=planet+earth" target="_blank" class="watch-btn">Watch
+                        Now</a>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script>
         function filterContent(category) {
             const cards = document.querySelectorAll('.content-card');
@@ -480,10 +514,10 @@
                 'inspire': '✨ Powerful stories of real people overcoming impossible odds. Watch these when you need to believe in yourself.',
                 'relax': '😴 Calming, peaceful content perfect for winding down or managing anxiety. Let these soothe your mind and soul.'
             };
-            
+
             // Update description
             document.getElementById('categoryDesc').textContent = descriptions[category];
-            
+
             // Filter cards
             cards.forEach(card => {
                 if (category === 'all' || card.dataset.category === category) {
@@ -494,11 +528,12 @@
                     card.classList.remove('show');
                 }
             });
-            
+
             // Update button styles
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
         }
     </script>
 </body>
+
 </html>

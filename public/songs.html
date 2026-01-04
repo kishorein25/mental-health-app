@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binaural Beats Therapy - Mental Wellness Hub</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         .audio-player {
             max-width: 600px;
@@ -15,14 +17,14 @@
             border-radius: 20px;
             padding: 2rem;
         }
-        
+
         .controls {
             display: flex;
             gap: 1rem;
             justify-content: center;
             margin: 1rem 0;
         }
-        
+
         button {
             padding: 1rem 2rem;
             border: none;
@@ -33,23 +35,23 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        
+
         button:hover {
             background: #764ba2;
             transform: scale(1.05);
         }
-        
+
         input[type="range"] {
             width: 100%;
             margin: 1rem 0;
         }
-        
+
         .beat-selector {
             display: grid;
             gap: 1rem;
             margin: 1rem 0;
         }
-        
+
         .beat-option {
             padding: 1rem;
             background: rgba(255, 255, 255, 0.05);
@@ -57,19 +59,20 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        
+
         .beat-option:hover {
             background: rgba(255, 255, 255, 0.15);
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>🎵 Binaural Beats Therapy</h1>
         <p>Harness the power of sound frequencies to transform your mental state</p>
-        <a href="../index.html" style="color: white; text-decoration: none; opacity: 0.9; font-size: 1.1rem;">← Back to Home</a>
+        <a href="/" style="color: white; text-decoration: none; opacity: 0.9; font-size: 1.1rem;">← Back to Home</a>
     </header>
-    
+
     <div class="audio-player">
         <h2>Select Your Frequency</h2>
         <div class="beat-selector">
@@ -90,20 +93,21 @@
                 <p>Active thinking & concentration</p>
             </div>
         </div>
-        
+
         <div class="controls">
             <button id="play-btn" onclick="togglePlay()">▶ Play</button>
             <button onclick="stopAudio()">⏹ Stop</button>
         </div>
-        
+
         <div>
             <label for="volume">Volume</label>
             <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
         </div>
-        
+
         <p id="current-beat">Select a frequency to begin</p>
     </div>
-    
+
     <script src="js/audio-player.js"></script>
 </body>
+
 </html>
