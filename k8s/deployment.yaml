@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mental-health-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mental-health-app
+  template:
+    metadata:
+      labels:
+        app: mental-health-app
+    spec:
+      containers:
+        - name: mental-health-app
+          image: ghcr.io/kishorein25/mental-health-app:latest
+          ports:
+            - containerPort: 3000
