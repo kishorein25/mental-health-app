@@ -53,7 +53,7 @@ If you need to push/pull images from GitHub Container Registry, generate a Perso
 Tokens are personal and cannot be stored or retrieved from this repository; keep yours private and export it locally, for example:
 
 ```bash
-export GHCR_TOKEN=<YOUR_PERSONAL_ACCESS_TOKEN>
+export GHCR_TOKEN=YOUR_PERSONAL_ACCESS_TOKEN
 ```
 
 ---
