@@ -43,6 +43,19 @@ MindBloom is optimized for deployment on **Render**.
 4.  Set the **Start Command** to `node server.js`.
 5.  **Environment Variables**: Ensure `GROQ_API_KEY` is set in the Render dashboard for the AI to function.
 
+### GHCR token (packages access)
+
+If you need to push/pull images from GitHub Container Registry, generate a Personal Access Token in your GitHub account with only:
+
+* `read:packages`
+* `write:packages`
+
+Tokens are personal and cannot be stored or retrieved from this repository; keep yours private and export it locally, for example:
+
+```bash
+export GHCR_TOKEN=<your_pat_with_read_write_packages>
+```
+
 ---
 
 ## 📁 Architecture
