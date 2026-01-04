@@ -2,11 +2,11 @@
 
 A comprehensive mental wellness application featuring an AI chatbot, relaxing music, binaural beats, and mind games to help improve your mental well-being.
 
-**🌐 Live App: [MindBloom](https://mindbloom.up.railway.app)**
+**🌐 Live App: [Click here to Deploy your own!](DEPLOY_TO_RENDER.md)**
 
 ![MindBloom](https://img.shields.io/badge/MindBloom-Wellness%20App-green)
 ![Node.js](https://img.shields.io/badge/Node.js-Server-brightgreen)
-![Railway](https://img.shields.io/badge/Deployed%20on-Railway-purple)
+![Render](https://img.shields.io/badge/Deploy%20on-Render-blue)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
 ## ✨ Features
